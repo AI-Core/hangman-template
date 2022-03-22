@@ -22,8 +22,14 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install hangman-marking-aicore
-
       - name: Verify milestone 1 tasks
         run: |
           python -m unittest -v hangman_test.test_milestone1 2> milestone_1.txt
-          python hangman_test.verify_milestone1.py
+      
+      - name: Tick off boxes in milestone 1
+        run: |
+          python -m hangman_test.verify_milestone1
+        if: always()
+        env:
+          USER_ID: ${{ secrets.USER_ID }}
+          API_TOKEN: ${{ secrets.API_TOKEN }}
