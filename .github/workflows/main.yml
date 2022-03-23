@@ -46,7 +46,7 @@ jobs:
       - name: Tick off boxes in milestone 2
         run: |
           python -m hangman_test.verify_milestone2
-        if: (failure() || success()) && steps.verify-milestone-1-tasks.outcome == 'success'
+        if: always() # If milestone 2 didn't run, it will untick all tasks from that milestone
         env:
           USER_ID: ${{ secrets.USER_ID }}
           API_TOKEN: ${{ secrets.API_TOKEN }}
@@ -61,7 +61,7 @@ jobs:
       - name: Tick off boxes in milestone 3
         run: |
           python -m hangman_test.verify_milestone3
-        if: (failure() || success()) && steps.verify-milestone-2-tasks.outcome == 'success'
+        if: always() # If milestone 3 didn't run, it will untick all tasks from that milestone
         env:
           USER_ID: ${{ secrets.USER_ID }}
           API_TOKEN: ${{ secrets.API_TOKEN }}
@@ -78,7 +78,7 @@ jobs:
         run: |
           python -m spacy download en_core_web_md
           python -m hangman_test.verify_milestone4
-        if: (failure() || success()) && steps.verify-milestone-3-tasks.outcome == 'success'
+        if: always() # If milestone 4 didn't run, it will untick all tasks from that milestone
         
         env:
           USER_ID: ${{ secrets.USER_ID }}
