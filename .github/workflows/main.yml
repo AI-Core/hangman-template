@@ -3,8 +3,12 @@ name: Correcting Hangman
 on:
   push:
     branches: [ main ]
+    paths:
+      - hangman/*
   pull_request:
     branches: [ main ]
+    paths:
+      - hangman/*
 
   workflow_dispatch:
 
